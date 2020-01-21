@@ -10,21 +10,40 @@
     {{ message }}
     </div>
     <hr>
-    <input type="text" onInput="doAction(event);">
+    <button onclick="doAction();">
+    click
+    </button>
+
+
     <script>
     var data = {
-        message: 'please type!'
+        message: 'Hello Vue!'
     };
 
 
+    // 2-6
+    // var app = new Vue({
+    //     el: '#app',
+    //     data: data,
+    //     render: (element)=>{
+    //         return element("p",data.message);
+    //     }
+    // })
+
+    // 2-7 第二引数に属性を設定
     var app = new Vue({
-        el: '#app',
-        data: data
-    })
+    el: '#app',
+    data: data,
+    render: (element)=>{
+        return element("p",
+            {'style':'font-size:20pt; color:red;'},
+            data.message);
+    }
+})
 
 
-    function doAction(event) {
-        data.message = event.target.value;
+    function doAction() {
+        data.message = "You Clicked!!!";
     }
     </script>
 </body>
