@@ -7,9 +7,10 @@
 <body>
     <h1>Vue.js</h1>
     <div id="app">
-    {{ message }}
+        <ol v-html="messages"></ol>
     </div>
     <hr>
+    <input type="text" onInput="doInput(event);">
     <button onclick="doAction();">
     click
     </button>
@@ -17,33 +18,21 @@
 
     <script>
     var data = {
-        message: 'Hello Vue!'
+        messages: '<li>Hello Vue!</li>'
     };
 
 
-    // 2-6
-    // var app = new Vue({
-    //     el: '#app',
-    //     data: data,
-    //     render: (element)=>{
-    //         return element("p",data.message);
-    //     }
-    // })
-
-    // 2-7 第二引数に属性を設定
     var app = new Vue({
-    el: '#app',
-    data: data,
-    render: (element)=>{
-        return element("p",
-            {'style':'font-size:20pt; color:red;'},
-            data.message);
+        el: '#app',
+        data: data
+    });
+
+
+    function doInput(event) {
+        data.message = event.target.value;
     }
-})
-
-
     function doAction() {
-        data.message = "You Clicked!!!";
+        data.messages += '<li>' + data.message + '</li>'
     }
     </script>
 </body>
